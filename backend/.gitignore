@@ -1,0 +1,31 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+.vs/
+*.user
+*.suo
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+appsettings.json
+secrets.json
+
+
+# Logs
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Uploaded property images (if stored locally)
+uploads/

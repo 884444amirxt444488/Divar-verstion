@@ -16,8 +16,9 @@ public class TrimJsonModel : JsonConverter<string>
         }
 
         string? Result = reader.GetString();
+
         if (Result == null)
-        {   
+        {
             return null;
         }
 
@@ -28,7 +29,6 @@ public class TrimJsonModel : JsonConverter<string>
         writer.WriteStringValue(value);
     }
 }
-
 
 
 

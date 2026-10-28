@@ -1,3 +1,4 @@
+/*
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
@@ -12,7 +13,21 @@ public class TrimAllModelBinder : IModelBinderProvider
         return null;
     }
 }
+*/
 
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+
+public class TrimAllModelBinder : IModelBinderProvider
+{
+    public IModelBinder? GetBinder(ModelBinderProviderContext modelBinderProviderContext)
+    {
+        if (modelBinderProviderContext.Metadata.ModelType == typeof(string))
+        {
+            return new TrimModelBinder();
+        }
+        return null;
+    }
+}
 
 
 

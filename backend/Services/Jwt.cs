@@ -1,10 +1,9 @@
 
-
-
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 public class Jwt
@@ -39,19 +38,23 @@ public class Jwt
             issuer: Issuer,
             audience: Audince,
             expires: DateTime.UtcNow.AddMinutes(ExpiresMinutes),
+
             claims: claims,
+
             signingCredentials: credentials
         );
+
         return new JwtSecurityTokenHandler().WriteToken(AccessToken);
     }
+
+
     public string GenerateRefreshToken()
     {
-        byte[] RefreshTokenBytes = RandomNumberGenerator.GetBytes(64);
+        byte[] bytes = RandomNumberGenerator.GetBytes(64);
 
-        return Convert.ToBase64String(RefreshTokenBytes);
+        return Convert.ToBase64String(bytes);
     }
 }
-
 
 
 

@@ -79,6 +79,31 @@ CREATE TABLE refreshtokens (
 );
 ```
 
+# AD
+```sql
+CREATE TABLE users_products(
+	id SERIAL PRIMARY KEY,
+	userid INT NOT NULL,
+	price DECIMAL(16, 2) NOT NULL CHECK(price > 0),
+    property_type VARCHAR(30) NOT NULL,
+	description TEXT,
+	address TEXT,
+	created_at TIMESTAMPTZ DEFAULT NOW(),
+	CONSTRAINT fk_products_users
+		FOREIGN KEY (userid) REFERENCES users(id)
+)
+```
+
+# Ad photo
+```sql
+CREATE TABLE users_products_photos(
+	id SERIAL PRIMARY KEY,
+	users_products_id INT NOT NULL,
+	photo_address TEXT,
+	CONSTRAINT fk_users_products_id 
+		FOREIGN KEY (users_products_id) REFERENCES users_products(id) ON DELETE CASCADE
+)
+```
 ---
 
 ## 📝 Notes

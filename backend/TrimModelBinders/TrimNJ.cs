@@ -32,12 +32,11 @@ public class TrimModelBinder : IModelBinder
     }
 }
 */
-
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 public class TrimModelBinder : IModelBinder
 {
-    public Task BindModelBinder(ModelBindingContext modelBindingContext)
+    public Task BindModelAsync(ModelBindingContext modelBindingContext)
     {
         var Value = modelBindingContext.ValueProvider.GetValue(modelBindingContext.ModelName);
 
@@ -53,14 +52,16 @@ public class TrimModelBinder : IModelBinder
             Result = Result.Trim();
         }
 
+        modelBindingContext.ModelState.SetModelValue(
+            modelBindingContext.ModelName,
+            Value
+        );
+
         modelBindingContext.Result = ModelBindingResult.Success(Result);
 
         return Task.CompletedTask;
     }
 }
-
-
-
 
 
 

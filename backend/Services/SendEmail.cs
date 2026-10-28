@@ -89,4 +89,3 @@ public class EmailServices
         await client.DisconnectAsync(true);
     }
 }
-
